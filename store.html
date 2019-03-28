@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <script>
+            function Employee(a,b){
+                this.id=a;
+                this.name1=b;
+            }
+            var e1=new Employee(100,"Janaki");
+            var e2=new Employee(101,"sheela");
+            var e3=new Employee(102,"ramesh");
+
+            function storeData()
+            {
+                var employees1=[e1,e2,e3];
+                //alert("hi")
+                if(window.localStorage){
+                    //alert("hello")
+                    window.localStorage.setItem("emps",JSON.stringify(employees1));
+               
+                    console.log("Data Stored");
+                    alert("Data Stored")
+                }
+                else{
+                    alert("storage is not suppported");
+                }
+            }
+            function retrieveData(){
+                var emps=null;
+                if(window.localStorage){
+                    str=window.localStorage.getItem("emps");
+                    emps=JSON.parse(str);
+                    for(i in emps){
+                        alert(emps[i].id+","+emps[i].name1);
+                    }
+                
+                }
+                else
+                {
+                    alert("storage is not suppported");
+                }
+            }
+            function clearData(){
+                if(window.localStorage){
+                    str=window.localStorage.removeItem("emps");
+                    alert("Data is Deleted");
+                }
+                else{
+                    alert("storage is not suppported");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <input type="button" value="SAVE" onclick="storeData()">
+        <input type="button" value="LOAD" onclick="retrieveData()">
+        <input type="button" value="DELETE" onclick="clearData()">
+    </body>
+</html>
